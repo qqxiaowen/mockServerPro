@@ -1,0 +1,64 @@
+@mixin antd-border4 {
+  border-radius: 4px !important;
+}
+
+@mixin cursor-pointer() {
+  cursor: pointer;
+  user-select: none;
+}
+
+@mixin cursor-no-drop {
+  cursor: no-drop;
+  user-select: none;
+}
+
+@mixin form-style {
+  padding: 24px;
+  background: $grayBackground;
+  border: 1px solid #333;
+  border-radius: 12px;
+}
+
+$mianColor: #409eff;
+$grayBackground: rgb(235, 233, 233);
+$whiteColor: #fff;
+
+.app {
+  display: flex;
+  flex-direction: column;
+  color: #000;
+  height: 100vh;
+  overflow-y: scroll;
+  background-color: #f7f8f9;
+
+  .app-main {
+    display: flex;
+    flex-shrink: 0;
+    flex: 1;
+    // margin-top: 12px;
+
+    & > div {
+      &:first-child {
+        flex-direction: 0;
+      }
+
+      &:last-child {
+        flex: 1;
+      }
+    }
+  }
+}
+
+// input提示框文字
+.help-template {
+  color: #f16272;
+  font-size: 12px;
+  line-height: 1;
+  padding-top: 8px;
+  padding-left: 8px;
+}
+
+// 设置文字换行
+.break-all {
+  word-break: break-all;
+}

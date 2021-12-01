@@ -1,0 +1,38 @@
+@import './app.scss';
+
+.menu-component {
+  background-color: #eee;
+
+  .placeholder {
+    width: 240px;
+  }
+
+  .menu-main {
+    position: fixed;
+    top: 60px;
+    bottom: 0;
+    left: 0;
+    flex-shrink: 0;
+    width: 240px;
+    flex-direction: column;
+    align-items: center;
+
+    .item {
+      display: flex;
+      height: 48px;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 18px;
+      border-bottom: 1px solid #000;
+
+      &:hover {
+        color: $mianColor;
+      }
+
+      &.title {
+        color: $mianColor;
+      }
+    }
+  }
+}

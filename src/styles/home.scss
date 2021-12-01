@@ -1,0 +1,25 @@
+@import './app.scss';
+
+.home-page {
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  height: calc(100vh - 48px);
+
+  .project-detail {
+    flex-shrink: 0;
+    @include form-style();
+  }
+
+  .category-list {
+    flex: 1;
+    overflow-y: scroll;
+    margin-top: 24px;
+  }
+
+  .button-box {
+    .detail {
+      margin-right: 8px;
+    }
+  }
+}
