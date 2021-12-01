@@ -2,7 +2,7 @@
  * @Author: xiaoWen
  * @Date: 2021-12-01 15:53:08
  * @LastEditors: xiaoWen
- * @LastEditTime: 2021-12-01 18:08:22
+ * @LastEditTime: 2021-12-01 18:52:32
  */
 
 import { Button, Card, Collapse, Form, Input, message } from 'antd';
@@ -127,8 +127,8 @@ const Category = (props: RouteComponentProps) => {
               <Card>
                 <div className="title">mock地址</div>
                 <div className="content">
-                  <div>{`/mock/${categoryData!.project._id}${item.url}`}</div>
-                  <div style={{color: 'gray'}}>/mock/项目id/地址，不能添加动态路由</div>
+                  <div>{`/mock/${categoryData!._id}${item.url}`}</div>
+                  <div style={{color: 'gray'}}>/mock/类别id/地址</div>
                 </div>
               </Card>
             </div>
