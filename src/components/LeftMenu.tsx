@@ -2,7 +2,7 @@
  * @Author: xiaoWen
  * @Date: 2021-11-30 18:21:09
  * @LastEditors: xiaoWen
- * @LastEditTime: 2021-12-01 17:46:04
+ * @LastEditTime: 2021-12-02 09:54:12
  */
 import { Menu } from 'antd';
 import { AppstoreOutlined } from '@ant-design/icons';
@@ -28,9 +28,9 @@ const LeftMenu = (props: LeftMenuProps) => {
   const { menuData, setSelsectProjectId } = props;
 
   const onClick = (e: any) => {
-    console.log('onSelect');
+    // console.log('onSelect');
     setSelsectProjectId(e.key);
-    console.log(props.history.location.pathname);
+    // console.log(props.history.location.pathname);
     if (props.history.location.pathname !== EnumProjectRoute.home) {
       props.history.push(EnumProjectRoute.home);
     }

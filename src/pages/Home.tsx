@@ -2,7 +2,7 @@
  * @Author: xiaoWen
  * @Date: 2021-11-30 17:57:42
  * @LastEditors: xiaoWen
- * @LastEditTime: 2021-12-01 18:01:05
+ * @LastEditTime: 2021-12-02 14:34:06
  */
 
 import { Button, Form, Input, message, Popconfirm, Table } from 'antd';
@@ -79,7 +79,7 @@ const Home = (props: HomeProps) => {
           <Input placeholder="请输入" maxLength={50} />
         </Form.Item>
         <Form.Item name="desc" label="项目描述">
-          <TextArea placeholder="请输入" maxLength={500} />
+          <TextArea placeholder="请输入" autoSize={true} />
         </Form.Item>
       </Form>
     );

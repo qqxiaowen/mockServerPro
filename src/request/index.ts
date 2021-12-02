@@ -1,12 +1,12 @@
 /*
  * @Description: xiaoWen
  * @Date: 2021-11-03 17:03:23
- * @LastEditTime: 2021-12-01 14:59:03
+ * @LastEditTime: 2021-12-02 14:01:50
  * @FilePath: /liz-qywechat-danone-gt-web/www/src/request/index.ts
  */
 import { message } from 'antd';
 import axios from 'axios';
-import { storage, EnumStorageContent } from '../utils/storage';
+// import { storage, EnumStorageContent } from '../utils/storage';
 
 axios.create({
   baseURL: 'https://api.example.com', // TODO 处理环境变量改参
@@ -20,26 +20,13 @@ const request = (reqType: 'get' | 'post' | 'delete' | 'put', url: string, params
       ?.then(response => {
         const { status, data } = response;
         const { code, msg } = data;
-        // http状态码非200-start
         if (status !== 200) {
           message.error('请求有点小问题！');
           reject(data || {});
           return;
         }
-        // http状态码非200-end
-        if (code === 702) {
-          message.error('登录失效，请重新登录！');
-          reject(data || {});
-          storage.removeItem(EnumStorageContent.userInfo);
-          setTimeout(() => {
-            window.location.reload();
-          }, 1000);
-          return;
-        }
         if (code !== 200) {
-          if (code !== 405 && code !== 406) {
-            message.error(msg || '请求有点小问题！!');
-          }
+          message.error(msg || '请求有点小问题！！！');
           reject(data || {});
           return;
         }
@@ -49,6 +36,7 @@ const request = (reqType: 'get' | 'post' | 'delete' | 'put', url: string, params
         }
       })
       .catch((err: any) => {
+        console.log('err: ', err);
         message.error(err.toString());
       });
   });

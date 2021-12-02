@@ -24,9 +24,10 @@
     .panel-header {
       display: flex;
       font-weight: bold;
+      flex: 1;
 
       .interfaceName {
-        width: 200px;
+        width: 360px;
         margin-right: 6px;
         text-align: center;
       }
