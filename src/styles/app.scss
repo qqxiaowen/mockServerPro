@@ -49,6 +49,16 @@ $whiteColor: #fff;
   }
 }
 
+// antd面包屑
+.ant-breadcrumb {
+  .ant-breadcrumb-link {
+    cursor: pointer;
+    &:hover {
+      color: $mianColor;
+    }
+  }
+}
+
 // input提示框文字
 .help-template {
   color: #f16272;

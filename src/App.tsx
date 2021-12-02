@@ -20,7 +20,6 @@ import { EnumProjectRoute } from './utils/tsMap';
 
 function App() {
   const [menuData, setMenuData] = useState<MenuDataItem[]>([]);
-  const [selsectProjectId, setSelsectProjectId] = useState<string>('');
 
   useEffect(() => {
     request('get', '/project').then((res: any) => {
@@ -28,33 +27,17 @@ function App() {
     });
   }, []);
 
-  // useEffect(() => {
-  //   if (!selsectProjectId) return;
-  //   console.log('change= ', selsectProjectId);
-  // }, [selsectProjectId]);
-
   return (
     <div className="app">
       <Header />
       <div className="app-main">
         <Router>
-          <LeftMenu menuData={menuData} setSelsectProjectId={setSelsectProjectId} />
+          <LeftMenu menuData={menuData} />
           <Switch>
-            <Redirect exact path="/"  to={EnumProjectRoute.home}/>
-            <Route exact path={EnumProjectRoute.home} render={() => <Home selsectProjectId={selsectProjectId} />} />
-            <Route exact path={EnumProjectRoute.category} render={() => <Category/>} />
-            <Route exact path={EnumProjectRoute.interface} render={() => <Interface/>} />
-            {/* <Route
-                path="/setting"
-                render={() => (
-                  <div className="setting">
-                    <div className="setting-content">
-                      <Route exact path={EnumProjectRoute.settingAccount} component={SettingAccount} />
-                      <Route exact path={EnumProjectRoute.settingRole} component={SettingRole} />
-                    </div>
-                  </div>
-                )}
-              ></Route> */}
+            <Redirect exact path="/" to={EnumProjectRoute.home} />
+            <Route exact path={EnumProjectRoute.home} component={Home} />
+            <Route exact path={EnumProjectRoute.category} component={Category} />
+            <Route exact path={EnumProjectRoute.interface} component={Interface} />
           </Switch>
         </Router>
       </div>

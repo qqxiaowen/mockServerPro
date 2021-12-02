@@ -2,7 +2,7 @@
  * @Author: xiaoWen
  * @Date: 2021-12-01 15:53:08
  * @LastEditors: xiaoWen
- * @LastEditTime: 2021-12-02 13:52:14
+ * @LastEditTime: 2021-12-02 18:15:06
  */
 
 import { Button, Card, Collapse, Form, Input, message, Popconfirm } from 'antd';
@@ -13,7 +13,7 @@ import EmptyBox from '../components/EmptyBox';
 import request from '../request';
 
 import '../styles/category.scss';
-import { EnumProjectRoute } from '../utils/tsMap';
+import { EMethod, EnumProjectRoute } from '../utils/tsMap';
 import { InterfaceData } from './Interface';
 
 const { TextArea } = Input;
@@ -88,10 +88,24 @@ const Category = (props: RouteComponentProps) => {
   };
 
   const panelHeader = (obj: InterfaceData) => {
+    const getBGColor = (method: EMethod) => {
+      switch (method) {
+        case EMethod.get:
+          return '#72aff8';
+        case EMethod.post:
+          return '#70c895';
+        case EMethod.put:
+          return '#efa44a';
+        case EMethod.delete:
+          return '#e64f47';
+      }
+    };
     return (
       <div className="panel-header">
         <div className="interfaceName">{obj.interfaceName}</div>
-        <div className="method">{obj.method}</div>
+        <div className="method" style={{ background: getBGColor(obj.method) }}>
+          {obj.method}
+        </div>
         <div className="url">{obj.url}</div>
       </div>
     );
@@ -143,11 +157,12 @@ const Category = (props: RouteComponentProps) => {
         ))}
       </Collapse>
     );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [categoryData, interfaceList, props.history]);
 
   return categoryData?._id ? (
     <div className="category-page">
-      <BreadcrumbBox data={[{ name: categoryData.project.projectName }, { name: categoryData.categoryName }]} />
+      <BreadcrumbBox data={[{ name: categoryData.project.projectName, url: EnumProjectRoute.home + '?id=' + categoryData.project._id }, { name: categoryData.categoryName }]} />
       <div className="page-detail">
         {formDom}
         <Button onClick={changeData}>修改</Button>

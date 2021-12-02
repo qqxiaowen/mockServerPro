@@ -2,7 +2,7 @@
  * @Author: xiaoWen
  * @Date: 2021-11-30 17:57:42
  * @LastEditors: xiaoWen
- * @LastEditTime: 2021-12-02 14:34:06
+ * @LastEditTime: 2021-12-02 18:22:24
  */
 
 import { Button, Form, Input, message, Popconfirm, Table } from 'antd';
@@ -19,7 +19,6 @@ import { EnumProjectRoute } from '../utils/tsMap';
 const { TextArea } = Input;
 
 interface HomeProps extends RouteComponentProps {
-  selsectProjectId: string;
 }
 
 interface ProjectData {
@@ -36,12 +35,17 @@ interface categoryListDataItem {
 }
 
 const Home = (props: HomeProps) => {
-  const { selsectProjectId } = props;
 
   const [projectData, setProjectData] = useState<ProjectData>();
   const [categoryListData, setCategoryListData] = useState<categoryListDataItem[]>([]);
+  const [selsectProjectId, setSelsectProjectId] = useState<string>();
 
   const [formData] = Form.useForm();
+
+  useEffect(() => {
+    if (!props.history.location.search) return;
+    setSelsectProjectId(props.history.location.search.split('=')[1]);
+  }, [props.history.location.search]);
 
   useEffect(() => {
     if (!selsectProjectId) return;
@@ -120,7 +124,7 @@ const Home = (props: HomeProps) => {
     };
 
     const jumpCategoryDetail = (obj: categoryListDataItem) => {
-      props.history.push({pathname: EnumProjectRoute.category, search: `id=${obj._id}`});
+      props.history.push({ pathname: EnumProjectRoute.category, search: `id=${obj._id}` });
     };
 
     return <Table rowKey={(item: categoryListDataItem) => item._id} dataSource={categoryListData} columns={columns} pagination={false} />;
@@ -129,7 +133,7 @@ const Home = (props: HomeProps) => {
 
   return projectData?._id ? (
     <div className="home-page">
-      <BreadcrumbBox data={[{name: projectData.projectName}]} />
+      <BreadcrumbBox data={[{ name: projectData.projectName }]} />
       <div className="project-detail">
         {formDom}
         <Button onClick={changeProjectData}>修改</Button>
