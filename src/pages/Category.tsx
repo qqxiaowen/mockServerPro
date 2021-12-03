@@ -2,7 +2,7 @@
  * @Author: xiaoWen
  * @Date: 2021-12-01 15:53:08
  * @LastEditors: xiaoWen
- * @LastEditTime: 2021-12-02 18:15:06
+ * @LastEditTime: 2021-12-03 11:27:18
  */
 
 import { Button, Card, Collapse, Form, Input, message, Popconfirm } from 'antd';
@@ -10,11 +10,12 @@ import { useEffect, useMemo, useState } from 'react';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 import BreadcrumbBox from '../components/BreadcrumbBox';
 import EmptyBox from '../components/EmptyBox';
-import request from '../request';
-
-import '../styles/category.scss';
 import { EMethod, EnumProjectRoute } from '../utils/tsMap';
 import { InterfaceData } from './Interface';
+import request from '../request';
+import ReactJson from 'react-json-view';
+
+import '../styles/category.scss';
 
 const { TextArea } = Input;
 const { Panel } = Collapse;
@@ -112,6 +113,15 @@ const Category = (props: RouteComponentProps) => {
   };
 
   const listDom = useMemo(() => {
+    const renderJsonJSX = (val: string): any => {
+      try {
+        const result = JSON.parse(val);
+        return <ReactJson name={false} src={result} />;
+      } catch (err) {
+        return <div>{val}</div>;
+      }
+    };
+
     if (!interfaceList.length || !categoryData?._id) {
       return <EmptyBox />;
     }
@@ -122,11 +132,11 @@ const Category = (props: RouteComponentProps) => {
             <div className="pannel-content">
               <Card>
                 <div className="title">请求体</div>
-                <div className="content">{item.params || '无'}</div>
+                {renderJsonJSX(item.params)}
               </Card>
               <Card>
                 <div className="title">响应体</div>
-                <div className="content">{item.content || '无'}</div>
+                {renderJsonJSX(item.content)}
               </Card>
               <Card>
                 <div className="title">描述介绍</div>
@@ -162,7 +172,12 @@ const Category = (props: RouteComponentProps) => {
 
   return categoryData?._id ? (
     <div className="category-page">
-      <BreadcrumbBox data={[{ name: categoryData.project.projectName, url: EnumProjectRoute.home + '?id=' + categoryData.project._id }, { name: categoryData.categoryName }]} />
+      <BreadcrumbBox
+        data={[
+          { name: categoryData.project.projectName, url: EnumProjectRoute.home + '?id=' + categoryData.project._id },
+          { name: categoryData.categoryName }
+        ]}
+      />
       <div className="page-detail">
         {formDom}
         <Button onClick={changeData}>修改</Button>
