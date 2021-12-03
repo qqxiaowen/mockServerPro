@@ -2,7 +2,7 @@
  * @Author: xiaoWen
  * @Date: 2021-12-02 11:14:36
  * @LastEditors: xiaoWen
- * @LastEditTime: 2021-12-03 11:56:56
+ * @LastEditTime: 2021-12-03 15:02:22
  */
 
 import { Button, Form, Input, message, Select } from 'antd';
@@ -52,7 +52,14 @@ const Interface = (props: RouteComponentProps) => {
     request('get', '/interface/detail/' + interfaceId).then((res: any) => {
       setInterfaceData(res.data);
       const { interfaceName, desc, url, method, content, params } = res.data;
-      formData.setFieldsValue({ interfaceName, desc, url, method, content, params });
+      formData.setFieldsValue({
+        interfaceName,
+        desc,
+        url,
+        method,
+        content: content ? JSON.stringify(content) : content,
+        params: params ? JSON.stringify(params) : params
+      });
     });
   };
 
