@@ -2,7 +2,7 @@
  * @Author: xiaoWen
  * @Date: 2021-12-02 11:14:36
  * @LastEditors: xiaoWen
- * @LastEditTime: 2021-12-02 18:40:38
+ * @LastEditTime: 2021-12-03 11:56:56
  */
 
 import { Button, Form, Input, message, Select } from 'antd';
@@ -85,12 +85,11 @@ const Interface = (props: RouteComponentProps) => {
         </Form.Item>
         <Form.Item name="method" label="请求方式">
           <Select placeholder="请输入">
-            {
-              methodArr.map((item: EMethod) => (
-                <Option key={item} value={item}>{item}</Option>
-              ))
-            }
-            
+            {methodArr.map((item: EMethod) => (
+              <Option key={item} value={item}>
+                {item}
+              </Option>
+            ))}
           </Select>
         </Form.Item>
         <Form.Item name="params" label="请求体">

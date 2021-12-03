@@ -2,7 +2,7 @@
  * @Author: xiaoWen
  * @Date: 2021-12-01 15:53:08
  * @LastEditors: xiaoWen
- * @LastEditTime: 2021-12-03 11:27:18
+ * @LastEditTime: 2021-12-03 13:55:57
  */
 
 import { Button, Card, Collapse, Form, Input, message, Popconfirm } from 'antd';
@@ -113,18 +113,19 @@ const Category = (props: RouteComponentProps) => {
   };
 
   const listDom = useMemo(() => {
-    const renderJsonJSX = (val: string): any => {
-      try {
-        const result = JSON.parse(val);
-        return <ReactJson name={false} src={result} />;
-      } catch (err) {
-        return <div>{val}</div>;
+
+    const renderJsonJSX = (val: string | object | undefined): any => {
+      if (!val) {
+        return <div>空</div>;
       }
+      if (typeof val == 'object') {
+        return <ReactJson name={false} src={val} />;
+      }
+      return <ReactJson name={false} src={JSON.parse(val)} />;
     };
 
-    if (!interfaceList.length || !categoryData?._id) {
-      return <EmptyBox />;
-    }
+    if (!interfaceList.length || !categoryData?._id) return ''
+
     return (
       <Collapse>
         {interfaceList.map((item: InterfaceData) => (
@@ -133,10 +134,12 @@ const Category = (props: RouteComponentProps) => {
               <Card>
                 <div className="title">请求体</div>
                 {renderJsonJSX(item.params)}
+                {/* <ReactJson name={false} src={item.params}/> */}
               </Card>
               <Card>
                 <div className="title">响应体</div>
                 {renderJsonJSX(item.content)}
+                {/* <ReactJson name={false} src={item.content}/> */}
               </Card>
               <Card>
                 <div className="title">描述介绍</div>
@@ -145,7 +148,10 @@ const Category = (props: RouteComponentProps) => {
               <Card>
                 <div className="title">mock地址</div>
                 <div className="content">
-                  <div>{`/mock/${categoryData!.project._id}${item.url}`}</div>
+                  {
+                    console.log('====', JSON.stringify(categoryData))
+                  }
+                  <div>{`/mock/${categoryData.project._id}${item.url}`}</div>
                   {/* <div style={{ color: 'gray' }}>/mock/项目id/地址</div> */}
                 </div>
               </Card>
