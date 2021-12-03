@@ -79,8 +79,7 @@
   },
   "scripts": {
     "dev": "node scripts/start.js",
-    "build": "REACT_APP_REQUEST_HEARD=http://api.danonegt.sysgq.com node scripts/build.js --max-old-space-size=4096",
-    "build:test": "node scripts/build.js --max-old-space-size=4096",
+    "build": "node scripts/build.js --max-old-space-size=4096",
     "test": "node scripts/test.js"
   },
   "eslintConfig": {

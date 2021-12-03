@@ -1,11 +1,11 @@
 /*
  * @Description: xiaoWen
  * @Date: 2021-11-03 16:40:08
- * @LastEditTime: 2021-12-02 11:27:08
+ * @LastEditTime: 2021-12-03 18:19:15
  * @FilePath: /liz-qywechat-danone-gt-web/www/src/App.tsx
  */
 import { useEffect, useState } from 'react';
-import { Switch, Route, Redirect, BrowserRouter as Router } from 'react-router-dom';
+import { Switch, Route, Redirect, HashRouter as Router, } from 'react-router-dom';
 
 import Header from './components/Header';
 import LeftMenu, { MenuDataItem } from './components/LeftMenu';

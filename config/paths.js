@@ -1,4 +1,4 @@
-'use strict';
+
 
 const path = require('path');
 const fs = require('fs');
@@ -21,7 +21,9 @@ const publicUrlOrPath = getPublicUrlOrPath(
   process.env.PUBLIC_URL
 );
 
-const buildPath = process.env.BUILD_PATH || 'build';
+// const buildPath = process.env.BUILD_PATH || 'build';
+const buildPath = path.resolve(fs.realpathSync('../mock-api-ui'), 'public');
+// console.log('===========', buildPath);
 
 const moduleFileExtensions = [
   'web.mjs',
