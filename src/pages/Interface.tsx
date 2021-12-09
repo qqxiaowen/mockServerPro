@@ -2,7 +2,7 @@
  * @Author: xiaoWen
  * @Date: 2021-12-02 11:14:36
  * @LastEditors: xiaoWen
- * @LastEditTime: 2021-12-03 15:02:22
+ * @LastEditTime: 2021-12-09 11:40:47
  */
 
 import { Button, Form, Input, message, Select } from 'antd';
@@ -57,8 +57,8 @@ const Interface = (props: RouteComponentProps) => {
         desc,
         url,
         method,
-        content: content ? JSON.stringify(content) : content,
-        params: params ? JSON.stringify(params) : params
+        content: content,
+        params: params
       });
     });
   };
