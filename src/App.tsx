@@ -1,7 +1,7 @@
 /*
  * @Description: xiaoWen
  * @Date: 2021-11-03 16:40:08
- * @LastEditTime: 2021-12-03 18:19:15
+ * @LastEditTime: 2022-01-04 10:32:22
  * @FilePath: /liz-qywechat-danone-gt-web/www/src/App.tsx
  */
 import { useEffect, useState } from 'react';
@@ -11,6 +11,7 @@ import Header from './components/Header';
 import LeftMenu, { MenuDataItem } from './components/LeftMenu';
 import Category from './pages/Category';
 import Interface from './pages/Interface';
+import WordMain from './pages/wordPro/Main';
 
 import Home from './pages/Home';
 import request from './request';
@@ -38,6 +39,7 @@ function App() {
             <Route exact path={EnumProjectRoute.home} component={Home} />
             <Route exact path={EnumProjectRoute.category} component={Category} />
             <Route exact path={EnumProjectRoute.interface} component={Interface} />
+            <Route exact path={EnumProjectRoute.wordMain} component={WordMain} />
           </Switch>
         </Router>
       </div>
